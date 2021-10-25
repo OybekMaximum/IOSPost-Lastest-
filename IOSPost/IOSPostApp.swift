@@ -6,14 +6,20 @@
 //
 
 import SwiftUI
-
+import Firebase
 @main
 struct IOSPostApp: App {
+    
+    init(){
+        FirebaseApp.configure()
+    }
+    
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StarterScreen()
+                .environmentObject(SessionStore())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
